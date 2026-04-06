@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Global tech Institute of Ghatampur — Global tech Institute of Ghatampur</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f2f4fb;--card:#ffffff;--text:#1c2b4a;--muted:#7a8ba8;--border:#e4e9f5;
+  --blue:#3d6eff;--blue-light:#eef2ff;--green:#1db976;--green-light:#eafbf3;
+  --red:#f04343;--red-light:#fff0f0;--amber:#f5a623;--amber-light:#fff8ec;
+  --purple:#7c4dff;--purple-light:#f3efff;--teal:#0abfbc;--teal-light:#e7fafa;
+  --sidebar:#1c2b4a;--nav-h:60px;--header-h:56px;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;position:relative;overflow-x:hidden}
+/* HEADER */
+#app-header{position:sticky;top:0;z-index:200;background:var(--card);border-bottom:1px solid var(--border);height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.header-logo{display:flex;align-items:center;gap:10px}
+.logo-badge{width:34px;height:34px;background:var(--blue);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:12px;letter-spacing:-0.5px}
+.header-title{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:var(--text);line-height:1.2}
+.header-sub{font-size:10px;color:var(--muted);font-weight:500}
+.header-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--card);cursor:pointer;position:relative}
+.notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:5px;right:5px;border:1.5px solid var(--card)}
+/* BOTTOM NAV */
+#bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:var(--nav-h);background:var(--card);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding:0 4px;z-index:200}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:6px 4px;border-radius:10px;transition:all 0.2s}
+.nav-item.active .nav-ico{background:var(--blue);color:#fff}
+.nav-item.active .nav-lbl{color:var(--blue)}
+.nav-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:transparent;transition:all 0.2s}
+.nav-ico svg{width:18px;height:18px;stroke-width:2;fill:none;stroke:var(--muted)}
+.nav-item.active .nav-ico svg{stroke:#fff}
+.nav-lbl{font-size:10px;font-weight:600;color:var(--muted);transition:all 0.2s}
+/* MAIN SCROLL */
+#main{padding:12px 12px calc(var(--nav-h) + 16px);min-height:calc(100vh - var(--header-h))}
+/* PAGES */
+.page{display:none}.page.active{display:block}
+/* CARDS */
+.card{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden}
+.card-pad{padding:14px}
+/* STAT STRIP */
+.stat-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat-box{background:var(--card);border-radius:13px;border:1px solid var(--border);padding:13px 14px}
+.stat-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.stat-ico svg{width:16px;height:16px;stroke-width:2;fill:none}
+.stat-val{font-size:20px;font-weight:900;font-family:'Poppins',sans-serif;line-height:1}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
+/* SECTION HEADER */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin:16px 0 10px}
+.sec-title{font-size:14px;font-weight:700}
+.sec-link{font-size:12px;color:var(--blue);font-weight:600;cursor:pointer}
+/* COURSE CARDS */
+.course-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-ms-overflow-style:none}
+.course-scroll::-webkit-scrollbar{display:none}
+.course-card{min-width:130px;background:var(--card);border-radius:13px;border:1px solid var(--border);padding:14px;cursor:pointer;transition:all 0.2s;flex-shrink:0}
+.course-card:active{transform:scale(0.97)}
+.course-card-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
+.course-card-ico svg{width:18px;height:18px;stroke-width:2;fill:none;stroke:#fff}
+.course-code{font-size:16px;font-weight:900;font-family:'Poppins',sans-serif;margin-bottom:2px}
+.course-dur{font-size:10px;color:var(--muted);margin-bottom:6px}
+.course-count{font-size:11px;font-weight:700;color:var(--blue)}
+/* STUDENT LIST ITEM */
+.stu-item{display:flex;align-items:center;gap:11px;padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
+.stu-item:last-child{border-bottom:none}
+.stu-item:active{background:#f7f9ff}
+.stu-avatar{width:40px;height:40px;border-radius:11px;flex-shrink:0;object-fit:cover}
+.stu-init{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.stu-name{font-size:13px;font-weight:700;line-height:1.3}
+.stu-meta{font-size:11px;color:var(--muted);margin-top:1px}
+.stu-right{margin-left:auto;text-align:right;flex-shrink:0}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.b-green{background:var(--green-light);color:#0d6b3e}
+.b-red{background:var(--red-light);color:#b91c1c}
+.b-blue{background:var(--blue-light);color:#1d4ed8}
+.b-amber{background:var(--amber-light);color:#92400e}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 16px;height:38px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-success{background:var(--green);color:#fff}
+.btn-danger{background:var(--red);color:#fff}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.btn-sm{height:30px;padding:0 11px;font-size:11px;border-radius:8px}
+.btn-block{width:100%}
+/* FAB */
+#fab{position:fixed;bottom:calc(var(--nav-h) + 14px);right:16px;width:50px;height:50px;background:var(--blue);border-radius:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(61,110,255,0.35);z-index:150;border:none;transition:all 0.2s}
+#fab:active{transform:scale(0.94)}
+#fab svg{width:22px;height:22px;stroke:#fff;stroke-width:2.5;fill:none}
+/* SEARCH BAR */
+.search-wrap{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:0 12px;height:40px;margin-bottom:12px}
+.search-wrap svg{width:16px;height:16px;stroke:var(--muted);stroke-width:2;fill:none;flex-shrink:0}
+.search-wrap input{flex:1;border:none;outline:none;font-family:'Nunito',sans-serif;font-size:13px;background:none;color:var(--text)}
+/* FORM */
+.form-group{margin-bottom:13px}
+.form-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:5px}
+.form-control{width:100%;height:42px;padding:0 12px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--text);background:var(--card);outline:none;transition:border 0.2s;-webkit-appearance:none}
+.form-control:focus{border-color:var(--blue)}
+textarea.form-control{height:auto;padding:10px 12px;resize:none}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+/* UPLOAD AREA */
+.upload-box{border:2px dashed var(--border);border-radius:11px;padding:14px;text-align:center;cursor:pointer;position:relative;transition:border 0.2s}
+.upload-box:active{border-color:var(--blue)}
+.upload-box input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-box-text{font-size:12px;color:var(--muted);font-weight:500}
+.upload-box-icon{width:32px;height:32px;background:var(--blue-light);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 7px}
+.upload-box-icon svg{width:16px;height:16px;stroke:var(--blue);stroke-width:2;fill:none}
+.upload-preview{display:flex;align-items:center;gap:10px;background:var(--green-light);border-radius:9px;padding:9px 11px;margin-top:8px}
+.upload-preview img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+.upload-preview-name{font-size:12px;font-weight:600;color:#0d6b3e}
+/* MODALS / DRAWERS */
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;align-items:flex-end}
+.drawer-overlay.open{display:flex}
+.drawer{background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:430px;margin:0 auto;max-height:90vh;overflow-y:auto;padding:0 0 20px;animation:slideUp 0.3s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.drawer-handle{width:36px;height:4px;background:var(--border);border-radius:4px;margin:12px auto 0}
+.drawer-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px}
+.drawer-title{font-size:15px;font-weight:800}
+.drawer-close{width:28px;height:28px;border-radius:8px;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.drawer-close svg{width:14px;height:14px;stroke:var(--muted);stroke-width:2.5;fill:none}
+.drawer-body{padding:0 16px}
+/* DETAIL PAGE */
+.detail-header{background:var(--blue);padding:20px 16px 24px;margin:-12px -12px 0;color:#fff}
+.detail-avatar-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.detail-avatar{width:64px;height:64px;border-radius:16px;object-fit:cover;border:3px solid rgba(255,255,255,0.4)}
+.detail-avatar-init{width:64px;height:64px;border-radius:16px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#fff;border:3px solid rgba(255,255,255,0.3)}
+.detail-name{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#fff}
+.detail-id{font-size:11px;color:rgba(255,255,255,0.7);margin-top:3px}
+.detail-course-badge{display:inline-flex;background:rgba(255,255,255,0.2);color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:5px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:none}
+.info-key{font-size:12px;color:var(--muted);font-weight:500}
+.info-val{font-size:13px;font-weight:700;text-align:right;max-width:60%}
+/* FEE PROGRESS */
+.fee-progress{background:var(--bg);border-radius:11px;padding:13px 14px;margin-bottom:12px}
+.fee-bar-track{background:var(--border);border-radius:6px;height:8px;margin:8px 0}
+.fee-bar-fill{height:100%;border-radius:6px;background:var(--blue);transition:width 0.5s}
+/* PAYMENT HISTORY */
+.pay-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.pay-item:last-child{border-bottom:none}
+.pay-date{font-size:11px;color:var(--muted)}
+.pay-mode{font-size:10px;font-weight:700;color:var(--blue)}
+.pay-amt{font-size:14px;font-weight:800;color:var(--green)}
+/* BACK BUTTON */
+.back-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer}
+.back-row svg{width:18px;height:18px;stroke:var(--blue);stroke-width:2.5;fill:none}
+.back-row span{font-size:13px;font-weight:700;color:var(--blue)}
+/* EMAIL STATUS */
+.email-status{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:10px;font-size:12px;font-weight:600;margin-top:10px}
+.email-pending{background:var(--blue-light);color:#1d4ed8}
+.email-ok{background:var(--green-light);color:#0d6b3e}
+.email-fail{background:var(--amber-light);color:#92400e}
+.email-status svg{width:15px;height:15px;stroke-width:2;fill:none;flex-shrink:0}
+/* TOAST */
+#toast{position:fixed;bottom:calc(var(--nav-h) + 70px);left:50%;transform:translateX(-50%);background:#1c2b4a;color:#fff;padding:10px 18px;border-radius:12px;font-size:13px;font-weight:600;z-index:9999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.2);max-width:320px;text-align:center}
+#toast.show{display:block}
+/* FILTER CHIPS */
+.chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--muted);flex-shrink:0;transition:all 0.2s}
+.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:40px 20px}
+.empty-icon{width:56px;height:56px;background:var(--blue-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.empty-icon svg{width:26px;height:26px;stroke:var(--blue);stroke-width:1.5;fill:none}
+.empty-title{font-size:15px;font-weight:700;margin-bottom:6px}
+.empty-sub{font-size:12px;color:var(--muted)}
+/* SETTINGS */
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
+.setting-row:last-child{border-bottom:none}
+.setting-label{font-size:13px;font-weight:600}
+.setting-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.toggle-wrap{position:relative;width:42px;height:24px}
+.toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:#dde3f0;border-radius:24px;cursor:pointer;transition:0.3s}
+.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;left:3px;top:3px;transition:0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.15)}
+.toggle-wrap input:checked+.toggle-slider{background:var(--blue)}
+.toggle-wrap input:checked+.toggle-slider:before{transform:translateX(18px)}
+/* SECTION DIVIDER */
+.sec-divider{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;padding:14px 0 8px}
+/* REPORTS */
+.report-card{background:var(--card);border-radius:13px;border:1px solid var(--border);padding:14px;margin-bottom:10px}
+/* ATTENDANCE */
+.att-item{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--border)}
+.att-item:last-child{border-bottom:none}
+.att-btns{display:flex;gap:6px}
+.att-btn{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--card);color:var(--muted);transition:all 0.2s}
+.att-btn.present{background:var(--green-light);color:#0d6b3e;border-color:#0d6b3e}
+.att-btn.absent{background:var(--red-light);color:#b91c1c;border-color:#b91c1c}
+/* SCROLLBAR HIDE */
+::-webkit-scrollbar{display:none}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#06b6d4">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Global tech Institute of Ghatampur">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>:root{--primary:#06b6d4;font-size:14px}body{font-family:'Nunito',sans-serif!important}</style>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<div id="app-header">
+  <div class="header-logo">
+    <div class="logo-badge">GIG</div>
+    <div>
+      <div class="header-title">Global Institute</div>
+      <div class="header-sub">Ghatampur</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <div class="icon-btn" onclick="navTo('notifications')">
+      <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:var(--muted);stroke-width:2;fill:none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="notif-dot" id="notif-dot" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+
+  <!-- DASHBOARD -->
+  <div id="pg-dashboard" class="page active">
+    <div class="stat-strip" id="dash-stats"></div>
+    <div class="sec-hdr">
+      <div class="sec-title">Courses</div>
+      <div class="sec-link" onclick="navTo('courses')">See all</div>
+    </div>
+    <div class="course-scroll" id="course-strip"></div>
+    <div class="sec-hdr">
+      <div class="sec-title">Recent Students</div>
+      <div class="sec-link" onclick="navTo('students')">See all</div>
+    </div>
+    <div class="card" id="recent-list"></div>
+  </div>
+
+  <!-- COURSES -->
+  <div id="pg-courses" class="page">
+    <div id="courses-grid-view">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="course-cards-grid"></div>
+    </div>
+    <div id="course-detail-view" style="display:none">
+      <div class="back-row" onclick="showCourseGrid()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Back to Courses</span>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:18px;font-weight:900;font-family:'Poppins',sans-serif" id="cd-title"></div>
+        <div style="font-size:12px;color:var(--muted)" id="cd-sub"></div>
+      </div>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search students..." id="cd-search" oninput="renderCD()">
+      </div>
+      <div class="chips">
+        <div class="chip active" onclick="setCF('all',this)">All</div>
+        <div class="chip" onclick="setCF('paid',this)">Paid</div>
+        <div class="chip" onclick="setCF('unpaid',this)">Unpaid</div>
+      </div>
+      <div class="card" id="cd-list"></div>
+    </div>
+  </div>
+
+  <!-- STUDENTS -->
+  <div id="pg-students" class="page">
+    <div id="stu-list-view">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search by name or mobile..." id="sl-search" oninput="renderSL()">
+      </div>
+      <div class="chips" id="course-chips">
+        <div class="chip active" onclick="setCourseFilt('',this)">All</div>
+        <div class="chip" onclick="setCourseFilt('ADCA',this)">ADCA</div>
+        <div class="chip" onclick="setCourseFilt('MDCA',this)">MDCA</div>
+        <div class="chip" onclick="setCourseFilt('DCA',this)">DCA</div>
+        <div class="chip" onclick="setCourseFilt('PGDCA',this)">PGDCA</div>
+        <div class="chip" onclick="setCourseFilt('CCC',this)">CCC</div>
+        <div class="chip" onclick="setCourseFilt('O LEVEL',this)">O Level</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px" id="sl-count"></div>
+      <div class="card" id="sl-list"></div>
+    </div>
+    <div id="stu-detail-view" style="display:none"></div>
+  </div>
+
+  <!-- FEES -->
+  <div id="pg-fees" class="page">
+    <div class="stat-strip" id="fee-stats"></div>
+    <div class="sec-divider">All Fee Records</div>
+    <div class="card" id="fee-list"></div>
+  </div>
+
+  <!-- ATTENDANCE -->
+  <div id="pg-attendance" class="page">
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <select class="form-control" id="att-course" onchange="renderAtt()" style="flex:1">
+        <option>ADCA</option><option>MDCA</option><option>DCA</option>
+        <option>PGDCA</option><option>CCC</option><option>O LEVEL</option>
+      </select>
+      <input type="date" class="form-control" id="att-date" style="flex:1">
+    </div>
+    <div class="card" id="att-list"></div>
+    <div style="margin-top:12px">
+      <button class="btn btn-success btn-block" onclick="saveAtt()">Save Attendance</button>
+    </div>
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  <div id="pg-notifications" class="page">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div class="sec-title">Notifications</div>
+      <div class="sec-link" onclick="markAllRead()">Mark all read</div>
+    </div>
+    <div id="notif-list"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="pg-settings" class="page">
+    <div class="sec-divider">Email Configuration</div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="padding:14px">
+        <div class="form-group">
+          <label class="form-label">Notification Email</label>
+          <input class="form-control" id="s-email" value="prem722sagar@gmail.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">EmailJS Service ID</label>
+          <input class="form-control" id="ejs-sid" placeholder="service_xxxxxxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label">EmailJS Template ID</label>
+          <input class="form-control" id="ejs-tid" placeholder="template_xxxxxxx">
+        </div>
+        <div class="form-group">
+          <label class="form-label">EmailJS Public Key</label>
+          <input class="form-control" id="ejs-key" placeholder="Your public key">
+        </div>
+        <button class="btn btn-primary btn-block" onclick="saveEJS()">Save Email Config</button>
+        <div style="margin-top:10px;padding:10px 12px;background:var(--blue-light);border-radius:9px;font-size:11px;color:#1d4ed8;font-weight:500;line-height:1.6">
+          Get free keys at <strong>emailjs.com</strong> — 200 emails/month free. Create account, add Gmail service, create template with variables: student_id, student_name, father_name, mobile, course, adm_date, total_fee, address.
+        </div>
+      </div>
+    </div>
+    <div class="sec-divider">Institute Info</div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="padding:14px">
+        <div class="form-group">
+          <label class="form-label">Institute Name</label>
+          <input class="form-control" value="Global Institute of Ghatampur">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input class="form-control" placeholder="Contact number">
+        </div>
+        <button class="btn btn-primary btn-block" onclick="toast('Saved successfully')">Save Info</button>
+      </div>
+    </div>
+    <div class="sec-divider">Data Management</div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="padding:14px">
+        <button class="btn btn-outline btn-block" style="margin-bottom:10px" onclick="backupData()">Export Backup (JSON)</button>
+        <button class="btn btn-outline btn-block" style="margin-bottom:10px" onclick="exportCSV()">Export Students (CSV)</button>
+        <button class="btn btn-danger btn-block" onclick="clearAllData()">Delete ALL Students</button>
+      </div>
+    </div>
+    <div class="sec-divider">Appearance</div>
+    <div class="card">
+      <div class="setting-row">
+        <div>
+          <div class="setting-label">Dark Mode</div>
+          <div class="setting-sub">Switch to dark theme</div>
+        </div>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="dm-toggle" onchange="toggleDark(this)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAB BUTTON -->
+<button id="fab" onclick="openAddDrawer()">
+  <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+</button>
+
+<!-- BOTTOM NAV -->
+<div id="bottom-nav">
+  <div class="nav-item active" data-page="dashboard" onclick="navTo('dashboard')">
+    <div class="nav-ico">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    </div>
+    <div class="nav-lbl">Home</div>
+  </div>
+  <div class="nav-item" data-page="courses" onclick="navTo('courses')">
+    <div class="nav-ico">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    </div>
+    <div class="nav-lbl">Courses</div>
+  </div>
+  <div class="nav-item" data-page="students" onclick="navTo('students')">
+    <div class="nav-ico">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="nav-lbl">Students</div>
+  </div>
+  <div class="nav-item" data-page="fees" onclick="navTo('fees')">
+    <div class="nav-ico">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div class="nav-lbl">Fees</div>
+  </div>
+  <div class="nav-item" data-page="settings" onclick="navTo('settings')">
+    <div class="nav-ico">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </div>
+    <div class="nav-lbl">Settings</div>
+  </div>
+</div>
+
+<!-- ADD STUDENT DRAWER -->
+<div class="drawer-overlay" id="add-drawer">
+  <div class="drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-header">
+      <div class="drawer-title">New Admission</div>
+      <button class="drawer-close" onclick="closeDrawer('add-drawer')">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Student Name *</label>
+          <input class="form-control" id="f-name" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Father Name *</label>
+          <input class="form-control" id="f-father" placeholder="Father's name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Mobile *</label>
+          <input class="form-control" id="f-mobile" type="tel" placeholder="10-digit number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Course *</label>
+          <select class="form-control" id="f-course">
+            <option value="">Select</option>
+            <option>ADCA</option><option>MDCA</option><option>DCA</option>
+            <option>PGDCA</option><option>CCC</option><option>O LEVEL</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Address</label>
+        <textarea class="form-control" id="f-addr" rows="2" placeholder="Full address"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Admission Date</label>
+          <input type="date" class="form-control" id="f-date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Fee (Rs)</label>
+          <input type="number" class="form-control" id="f-fee" placeholder="e.g. 6000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Student Photo</label>
+        <div class="upload-box" id="photo-box">
+          <input type="file" accept="image/*" id="f-photo" onchange="handlePhoto(this)">
+          <div id="photo-placeholder">
+            <div class="upload-box-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="upload-box-text">Tap to upload photo</div>
+          </div>
+          <div id="photo-ready" style="display:none">
+            <div class="upload-preview">
+              <img id="photo-preview" src="" alt="preview">
+              <div>
+                <div class="upload-preview-name">Photo uploaded</div>
+                <div style="font-size:11px;color:#0d6b3e" id="photo-fname"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ID Proof</label>
+        <div class="upload-box">
+          <input type="file" accept="image/*,.pdf" id="f-idproof" onchange="handleID(this)">
+          <div id="id-placeholder">
+            <div class="upload-box-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+            <div class="upload-box-text">Tap to upload Aadhaar / ID</div>
+          </div>
+          <div id="id-ready" style="display:none;padding:8px;background:var(--green-light);border-radius:8px;font-size:12px;font-weight:600;color:#0d6b3e" id="id-fname-disp"></div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="save-btn" onclick="saveStudent()" style="margin-bottom:8px">Save Admission</button>
+      <div id="email-status" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAY FEE DRAWER -->
+<div class="drawer-overlay" id="pay-drawer">
+  <div class="drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-header">
+      <div class="drawer-title">Record Payment</div>
+      <button class="drawer-close" onclick="closeDrawer('pay-drawer')">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="pay-content"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ─── COURSE INFO ───
+const CI = {
+  ADCA: {full:'Advance Diploma in Computer App.',dur:'12 months',fee:8000,col:'#3d6eff'},
+  MDCA: {full:'Master Diploma in Computer App.',dur:'18 months',fee:12000,col:'#7c4dff'},
+  DCA:  {full:'Diploma in Computer Application',dur:'6 months', fee:5000, col:'#1db976'},
+  PGDCA:{full:'Post Graduate Diploma in CA',    dur:'12 months',fee:10000,col:'#f5a623'},
+  CCC:  {full:'Course on Computer Concepts',    dur:'3 months', fee:3000, col:'#f04343'},
+  'O LEVEL':{full:'NIELIT O Level Course',      dur:'12 months',fee:9000, col:'#0abfbc'}
+};
+
+// ─── AVATAR COLORS ───
+const AC = [
+  ['#eef2ff','#1d4ed8'],['#f0fdf4','#166534'],['#f3efff','#5b21b6'],
+  ['#fffbeb','#92400e'],['#fff0f0','#b91c1c'],['#e7fafa','#0f5e5d']
+];
+function ac(i){return AC[i%AC.length]}
+function initials(n){return n.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase()}
+function fmtDate(d){if(!d)return'—';return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
+function fmtMoney(n){return'Rs '+n.toLocaleString('en-IN')}
+
+// ─── STORAGE ───
+function loadStudents(){try{return JSON.parse(localStorage.getItem('gig_v2_students')||'[]')}catch{return[]}}
+function saveStudents(arr){localStorage.setItem('gig_v2_students',JSON.stringify(arr))}
+function loadNotifs(){try{return JSON.parse(localStorage.getItem('gig_v2_notifs')||'[]')}catch{return[]}}
+function saveNotifs(arr){localStorage.setItem('gig_v2_notifs',JSON.stringify(arr))}
+function loadEJS(){try{return JSON.parse(localStorage.getItem('gig_v2_ejs')||'{}')}catch{return{}}}
+function saveEJS(obj){localStorage.setItem('gig_v2_ejs',JSON.stringify(obj))}
+function nextID(){
+  let n=parseInt(localStorage.getItem('gig_v2_nid')||'1');
+  localStorage.setItem('gig_v2_nid',n+1);
+  return 'GIG-'+String(n).padStart(3,'0');
+}
+
+let students=loadStudents();
+let curPhotoB64='';
+let curCourse='';
+let curCF='all';
+let fCourse='';
+let fFee='';
+
+// ─── NAVIGATION ───
+function navTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('pg-'+page).classList.add('active');
+  document.querySelector(`.nav-item[data-page="${page}"]`)?.classList.add('active');
+  if(page==='dashboard')renderDash();
+  if(page==='courses')renderCourses();
+  if(page==='students')renderSL();
+  if(page==='fees')renderFees();
+  if(page==='attendance')renderAtt();
+  if(page==='notifications')renderNotifs();
+  if(page==='settings')loadEJSForm();
+  document.getElementById('fab').style.display=(page==='students'||page==='dashboard')?'flex':'none';
+}
+
+// ─── DASHBOARD ───
+function renderDash(){
+  students=loadStudents();
+  const tot=students.length;
+  const collected=students.reduce((a,s)=>a+s.paid,0);
+  const pending=students.reduce((a,s)=>a+(s.totalFee-s.paid),0);
+  const due=students.filter(s=>s.paid<s.totalFee).length;
+
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="stat-box">
+      <div class="stat-ico" style="background:var(--blue-light)">
+        <svg viewBox="0 0 24 24" style="stroke:var(--blue)"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="stat-val">${tot}</div>
+      <div class="stat-lbl">Total Students</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-ico" style="background:var(--green-light)">
+        <svg viewBox="0 0 24 24" style="stroke:var(--green)"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="stat-val" style="font-size:16px">${fmtMoney(collected)}</div>
+      <div class="stat-lbl">Collected</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-ico" style="background:var(--red-light)">
+        <svg viewBox="0 0 24 24" style="stroke:var(--red)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="stat-val" style="font-size:16px">${fmtMoney(pending)}</div>
+      <div class="stat-lbl">Pending Fees</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-ico" style="background:var(--amber-light)">
+        <svg viewBox="0 0 24 24" style="stroke:var(--amber)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="stat-val">${due}</div>
+      <div class="stat-lbl">Due Payments</div>
+    </div>`;
+
+  // Course strip
+  const counts={};students.forEach(s=>counts[s.course]=(counts[s.course]||0)+1);
+  document.getElementById('course-strip').innerHTML=Object.entries(CI).map(([code,info])=>`
+    <div class="course-card" onclick="showCourseDetail('${code}');navTo('courses')">
+      <div class="course-card-ico" style="background:${info.col}">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div class="course-code" style="color:${info.col}">${code}</div>
+      <div class="course-dur">${info.dur}</div>
+      <div class="course-count">${counts[code]||0} students</div>
+    </div>`).join('');
+
+  // Recent students
+  const recent=[...students].sort((a,b)=>new Date(b.admDate)-new Date(a.admDate)).slice(0,6);
+  if(!recent.length){
+    document.getElementById('recent-list').innerHTML=`<div class="empty-state">
+      <div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="empty-title">No students yet</div>
+      <div class="empty-sub">Tap + to add your first student</div>
+    </div>`;return;
+  }
+  document.getElementById('recent-list').innerHTML=recent.map(s=>stuItemHTML(s)).join('');
+  updateNotifDot();
+}
+
+// ─── STUDENT ROW HTML ───
+function stuItemHTML(s, showDel=false){
+  const idx=students.indexOf(s);
+  const c=ac(idx>=0?idx:0);
+  const pend=s.totalFee-s.paid;
+  const avt=s.photo
+    ?`<img src="${s.photo}" class="stu-avatar">`
+    :`<div class="stu-init" style="background:${c[0]};color:${c[1]}">${initials(s.name)}</div>`;
+  const badge=pend<=0
+    ?`<span class="badge b-green">Paid</span>`
+    :`<span class="badge b-red">Due ${fmtMoney(pend)}</span>`;
+  return`<div class="stu-item" onclick="showStuDetail('${s.id}')">
+    ${avt}
+    <div style="flex:1;min-width:0">
+      <div class="stu-name">${s.name}</div>
+      <div class="stu-meta">${s.id} · ${s.course}</div>
+    </div>
+    <div class="stu-right">${badge}<div style="font-size:10px;color:var(--muted);margin-top:4px">${fmtDate(s.admDate)}</div></div>
+  </div>`;
+}
+
+// ─── COURSES ───
+function renderCourses(){
+  students=loadStudents();
+  document.getElementById('courses-grid-view').style.display='block';
+  document.getElementById('course-detail-view').style.display='none';
+  const counts={};students.forEach(s=>counts[s.course]=(counts[s.course]||0)+1);
+  document.getElementById('course-cards-grid').innerHTML=Object.entries(CI).map(([code,info])=>`
+    <div class="course-card" onclick="showCourseDetail('${code}')" style="text-align:left">
+      <div class="course-card-ico" style="background:${info.col};width:44px;height:44px;border-radius:12px">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div class="course-code" style="color:${info.col};font-size:15px;margin-top:8px">${code}</div>
+      <div class="course-dur">${info.full.substring(0,24)}...</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span class="course-count">${counts[code]||0} students</span>
+        <span style="font-size:10px;color:var(--muted)">${info.dur}</span>
+      </div>
+    </div>`).join('');
+}
+
+function showCourseDetail(code){
+  curCourse=code;
+  const info=CI[code];
+  document.getElementById('courses-grid-view').style.display='none';
+  document.getElementById('course-detail-view').style.display='block';
+  document.getElementById('cd-title').textContent=code;
+  document.getElementById('cd-sub').textContent=info.full+' · '+info.dur+' · Rs '+info.fee.toLocaleString('en-IN');
+  document.getElementById('cd-search').value='';
+  curCF='all';
+  document.querySelectorAll('.fc-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.fc-chip')[0]?.classList.add('active');
+  renderCD();
+}
+function showCourseGrid(){
+  document.getElementById('courses-grid-view').style.display='block';
+  document.getElementById('course-detail-view').style.display='none';
+}
+function renderCD(){
+  students=loadStudents();
+  const sv=document.getElementById('cd-search').value.toLowerCase();
+  let list=students.filter(s=>s.course===curCourse);
+  if(curCF==='paid')list=list.filter(s=>s.paid>=s.totalFee);
+  if(curCF==='unpaid')list=list.filter(s=>s.paid<s.totalFee);
+  if(sv)list=list.filter(s=>s.name.toLowerCase().includes(sv)||s.mobile.includes(sv));
+  if(!list.length){document.getElementById('cd-list').innerHTML=`<div class="empty-state"><div class="empty-title">No students found</div></div>`;return;}
+  document.getElementById('cd-list').innerHTML=list.map(s=>stuItemHTML(s)).join('');
+}
+function setCF(f,el){
+  curCF=f;
+  document.querySelectorAll('.fc-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderCD();
+}
+
+// ─── STUDENTS LIST ───
+function renderSL(){
+  students=loadStudents();
+  const sv=(document.getElementById('sl-search')?.value||'').toLowerCase();
+  let list=students;
+  if(sv)list=list.filter(s=>s.name.toLowerCase().includes(sv)||s.mobile.includes(sv));
+  if(fCourse)list=list.filter(s=>s.course===fCourse);
+  document.getElementById('sl-count').textContent=`${list.length} of ${students.length} students`;
+  if(!list.length){
+    document.getElementById('sl-list').innerHTML=`<div class="empty-state">
+      <div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="empty-title">No students found</div>
+      <div class="empty-sub">Try a different search or add a new student</div>
+    </div>`;return;
+  }
+  document.getElementById('sl-list').innerHTML=list.map(s=>stuItemHTML(s)).join('');
+}
+function setCourseFilt(v,el){
+  fCourse=v;
+  document.querySelectorAll('#course-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderSL();
+}
+
+// ─── STUDENT DETAIL ───
+function showStuDetail(id){
+  students=loadStudents();
+  const s=students.find(x=>x.id===id);
+  if(!s)return;
+  const idx=students.indexOf(s);
+  const c=ac(idx);
+  const info=CI[s.course];
+  const pend=s.totalFee-s.paid;
+  const pct=s.totalFee>0?Math.round(s.paid/s.totalFee*100):0;
+  const avt=s.photo
+    ?`<img src="${s.photo}" class="detail-avatar">`
+    :`<div class="detail-avatar-init">${initials(s.name)}</div>`;
+
+  document.getElementById('stu-list-view').style.display='none';
+  const dv=document.getElementById('stu-detail-view');
+  dv.style.display='block';
+  dv.innerHTML=`
+    <div class="detail-header">
+      <div class="back-row" onclick="backToStudents()" style="margin-bottom:12px">
+        <svg viewBox="0 0 24 24" style="stroke:#fff"><polyline points="15 18 9 12 15 6"/></svg>
+        <span style="color:#fff">Students</span>
+      </div>
+      <div class="detail-avatar-wrap">
+        ${avt}
+        <div>
+          <div class="detail-name">${s.name}</div>
+          <div class="detail-id">${s.id} · ${s.mobile}</div>
+          <div class="detail-course-badge">${s.course}</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px">
+      <div class="card" style="margin-bottom:12px">
+        <div style="padding:14px">
+          <div style="font-size:13px;font-weight:700;margin-bottom:10px">Student Information</div>
+          <div class="info-row"><span class="info-key">Father Name</span><span class="info-val">${s.father}</span></div>
+          <div class="info-row"><span class="info-key">Mobile</span><span class="info-val">${s.mobile}</span></div>
+          <div class="info-row"><span class="info-key">Address</span><span class="info-val">${s.address||'—'}</span></div>
+          <div class="info-row"><span class="info-key">Course</span><span class="info-val">${s.course}</span></div>
+          <div class="info-row"><span class="info-key">Duration</span><span class="info-val">${info.dur}</span></div>
+          <div class="info-row"><span class="info-key">Admission Date</span><span class="info-val">${fmtDate(s.admDate)}</span></div>
+        </div>
+      </div>
+      <div class="fee-progress">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:13px;font-weight:700">Fee Progress</div>
+          <div style="font-size:12px;color:var(--muted)">${pct}% paid</div>
+        </div>
+        <div class="fee-bar-track"><div class="fee-bar-fill" style="width:${pct}%"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-top:4px">
+          <span style="color:var(--green);font-weight:700">Paid: ${fmtMoney(s.paid)}</span>
+          <span style="color:var(--red);font-weight:700">Due: ${fmtMoney(pend)}</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Total: ${fmtMoney(s.totalFee)}</div>
+      </div>
+      ${pend>0?`<button class="btn btn-primary btn-block" style="margin-bottom:12px" onclick="openPay('${s.id}')">Add Payment</button>`:'<div style="text-align:center;padding:8px;color:var(--green);font-weight:700;font-size:13px;margin-bottom:12px">All fees paid</div>'}
+      <div class="card" style="margin-bottom:12px">
+        <div style="padding:14px">
+          <div style="font-size:13px;font-weight:700;margin-bottom:10px">Payment History</div>
+          ${s.payments.length?s.payments.map(p=>`
+            <div class="pay-item">
+              <div><div class="pay-date">${fmtDate(p.date)}</div><div class="pay-mode">${p.mode}</div></div>
+              <div class="pay-amt">${fmtMoney(p.amt)}</div>
+            </div>`).join(''):'<div style="text-align:center;padding:16px;font-size:12px;color:var(--muted)">No payments recorded</div>'}
+        </div>
+      </div>
+      <button class="btn btn-danger btn-block" onclick="deleteStu('${s.id}')">Delete Student</button>
+    </div>`;
+  document.getElementById('fab').style.display='none';
+}
+function backToStudents(){
+  document.getElementById('stu-list-view').style.display='block';
+  document.getElementById('stu-detail-view').style.display='none';
+  document.getElementById('fab').style.display='flex';
+  renderSL();
+}
+
+// ─── FEES ───
+function renderFees(){
+  students=loadStudents();
+  const coll=students.reduce((a,s)=>a+s.paid,0);
+  const pend=students.reduce((a,s)=>a+(s.totalFee-s.paid),0);
+  const due=students.filter(s=>s.paid<s.totalFee).length;
+  document.getElementById('fee-stats').innerHTML=`
+    <div class="stat-box"><div class="stat-ico" style="background:var(--green-light)"><svg viewBox="0 0 24 24" style="stroke:var(--green)"><polyline points="20 6 9 17 4 12"/></svg></div><div class="stat-val" style="font-size:15px">${fmtMoney(coll)}</div><div class="stat-lbl">Total Collected</div></div>
+    <div class="stat-box"><div class="stat-ico" style="background:var(--red-light)"><svg viewBox="0 0 24 24" style="stroke:var(--red)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="stat-val" style="font-size:15px">${fmtMoney(pend)}</div><div class="stat-lbl">Total Pending</div></div>
+    <div class="stat-box" style="grid-column:span 2"><div class="stat-val">${due}</div><div class="stat-lbl">Students with pending fees</div></div>`;
+  if(!students.length){document.getElementById('fee-list').innerHTML=`<div class="empty-state"><div class="empty-title">No fee records</div><div class="empty-sub">Add students to see fee details</div></div>`;return;}
+  document.getElementById('fee-list').innerHTML=students.map(s=>{
+    const p=s.totalFee-s.paid;
+    const pct=s.totalFee>0?Math.round(s.paid/s.totalFee*100):0;
+    const idx=students.indexOf(s);const c=ac(idx);
+    const avt=s.photo?`<img src="${s.photo}" class="stu-avatar">`:`<div class="stu-init" style="background:${c[0]};color:${c[1]}">${initials(s.name)}</div>`;
+    return`<div style="padding:13px 14px;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        ${avt}
+        <div style="flex:1"><div style="font-size:13px;font-weight:700">${s.name}</div><div style="font-size:11px;color:var(--muted)">${s.id} · ${s.course}</div></div>
+        ${p<=0?'<span class="badge b-green">Paid</span>':'<span class="badge b-red">Due</span>'}
+      </div>
+      <div class="fee-bar-track" style="margin:0 0 6px"><div class="fee-bar-fill" style="width:${pct}%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:10px">
+        <span style="color:var(--green);font-weight:700">Paid: ${fmtMoney(s.paid)}</span>
+        <span style="color:var(--muted)">Total: ${fmtMoney(s.totalFee)}</span>
+        <span style="color:var(--red);font-weight:700">Due: ${fmtMoney(p)}</span>
+      </div>
+      ${p>0?`<button class="btn btn-primary btn-sm btn-block" onclick="openPay('${s.id}')">Pay Now</button>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ─── ATTENDANCE ───
+function renderAtt(){
+  students=loadStudents();
+  const course=document.getElementById('att-course').value;
+  const list=students.filter(s=>s.course===course);
+  if(!list.length){document.getElementById('att-list').innerHTML=`<div class="empty-state"><div class="empty-title">No students in ${course}</div></div>`;return;}
+  document.getElementById('att-list').innerHTML=list.map(s=>`
+    <div class="att-item">
+      <div>
+        <div style="font-size:13px;font-weight:700">${s.name}</div>
+        <div style="font-size:11px;color:var(--muted)">${s.id}</div>
+      </div>
+      <div class="att-btns">
+        <button class="att-btn present" id="att-p-${s.id}" onclick="setAtt('${s.id}','P')">Present</button>
+        <button class="att-btn" id="att-a-${s.id}" onclick="setAtt('${s.id}','A')">Absent</button>
+      </div>
+    </div>`).join('');
+}
+function setAtt(id,status){
+  const pb=document.getElementById(`att-p-${id}`);
+  const ab=document.getElementById(`att-a-${id}`);
+  if(status==='P'){pb.className='att-btn present';ab.className='att-btn';}
+  else{pb.className='att-btn';ab.className='att-btn absent';}
+}
+function saveAtt(){toast('Attendance saved successfully!')}
+
+// ─── NOTIFICATIONS ───
+function renderNotifs(){
+  const notifs=loadNotifs();
+  const unread=notifs.filter(n=>!n.read).length;
+  if(!notifs.length){document.getElementById('notif-list').innerHTML=`<div class="empty-state"><div class="empty-icon"><svg viewBox="0 0 24 24" style="stroke:var(--blue)"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><div class="empty-title">No notifications</div></div>`;return;}
+  document.getElementById('notif-list').innerHTML=notifs.map((n,i)=>`
+    <div style="display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);opacity:${n.read?0.55:1}" onclick="markOne(${i})">
+      <div style="width:8px;height:8px;border-radius:50%;background:${n.type==='admission'?'var(--green)':n.type==='fee'?'var(--red)':'var(--blue)'};flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1"><div style="font-size:13px;font-weight:${n.read?500:700}">${n.msg}</div><div style="font-size:11px;color:var(--muted);margin-top:3px">${n.time}</div></div>
+    </div>`).join('');
+}
+function markOne(i){const ns=loadNotifs();ns[i].read=true;saveNotifs(ns);renderNotifs();updateNotifDot();}
+function markAllRead(){const ns=loadNotifs();ns.forEach(n=>n.read=true);saveNotifs(ns);renderNotifs();updateNotifDot();}
+function updateNotifDot(){const u=loadNotifs().filter(n=>!n.read).length;document.getElementById('notif-dot').style.display=u>0?'block':'none';}
+function addNotif(msg,type){const ns=loadNotifs();ns.unshift({msg,type,time:new Date().toLocaleString('en-IN'),read:false});saveNotifs(ns.slice(0,50));updateNotifDot();}
+
+// ─── ADD STUDENT ───
+function openAddDrawer(){
+  document.getElementById('f-name').value='';
+  document.getElementById('f-father').value='';
+  document.getElementById('f-mobile').value='';
+  document.getElementById('f-course').value='';
+  document.getElementById('f-addr').value='';
+  document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('f-fee').value='';
+  document.getElementById('f-photo').value='';
+  document.getElementById('f-idproof').value='';
+  document.getElementById('photo-placeholder').style.display='block';
+  document.getElementById('photo-ready').style.display='none';
+  document.getElementById('id-placeholder').style.display='block';
+  document.getElementById('id-ready').style.display='none';
+  document.getElementById('email-status').style.display='none';
+  document.getElementById('save-btn').disabled=false;
+  document.getElementById('save-btn').textContent='Save Admission';
+  curPhotoB64='';
+  document.getElementById('add-drawer').classList.add('open');
+}
+
+function handlePhoto(input){
+  const file=input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    curPhotoB64=e.target.result;
+    document.getElementById('photo-placeholder').style.display='none';
+    document.getElementById('photo-ready').style.display='block';
+    document.getElementById('photo-preview').src=curPhotoB64;
+    document.getElementById('photo-fname').textContent=file.name;
+  };
+  reader.readAsDataURL(file);
+}
+function handleID(input){
+  const file=input.files[0];
+  if(!file)return;
+  document.getElementById('id-placeholder').style.display='none';
+  document.getElementById('id-ready').style.display='block';
+  document.getElementById('id-ready').textContent='ID uploaded: '+file.name;
+}
+
+async function saveStudent(){
+  const name=document.getElementById('f-name').value.trim();
+  const father=document.getElementById('f-father').value.trim();
+  const mobile=document.getElementById('f-mobile').value.trim();
+  const course=document.getElementById('f-course').value;
+  const addr=document.getElementById('f-addr').value.trim();
+  const date=document.getElementById('f-date').value;
+  const feeV=document.getElementById('f-fee').value;
+
+  if(!name){toast('Enter student name');return;}
+  if(!father){toast('Enter father name');return;}
+  if(!mobile||mobile.length<10){toast('Enter valid 10-digit mobile');return;}
+  if(!course){toast('Select a course');return;}
+
+  const id=nextID();
+  const fee=parseInt(feeV)||CI[course]?.fee||5000;
+  const student={id,name,father,mobile,address:addr,course,admDate:date||new Date().toISOString().split('T')[0],totalFee:fee,paid:0,payments:[],photo:curPhotoB64};
+
+  // Save immediately
+  const all=loadStudents();
+  all.push(student);
+  saveStudents(all);
+  students=all;
+
+  document.getElementById('save-btn').disabled=true;
+  document.getElementById('save-btn').textContent='Saving...';
+
+  // Show sending status
+  const esBox=document.getElementById('email-status');
+  esBox.style.display='flex';
+  esBox.className='email-status email-pending';
+  esBox.innerHTML=`<svg viewBox="0 0 24 24" style="stroke:var(--blue)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Sending admission form to prem722sagar@gmail.com...`;
+
+  const sent=await sendAdmissionEmail(student);
+
+  if(sent===true){
+    esBox.className='email-status email-ok';
+    esBox.innerHTML=`<svg viewBox="0 0 24 24" style="stroke:var(--green)"><polyline points="20 6 9 17 4 12"/></svg> Email sent to prem722sagar@gmail.com!`;
+    toast('Student saved and email sent!');
+  }else if(sent==='no-config'){
+    esBox.className='email-status email-fail';
+    esBox.innerHTML=`<svg viewBox="0 0 24 24" style="stroke:var(--amber)"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Student saved! Configure EmailJS in Settings to enable emails.`;
+    toast('Student saved! Setup EmailJS in Settings for emails.');
+  }else{
+    esBox.className='email-status email-fail';
+    esBox.innerHTML=`<svg viewBox="0 0 24 24" style="stroke:var(--amber)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg> Student saved. Email delivery failed — check EmailJS config.`;
+    toast('Student saved. Email failed — check config.');
+  }
+
+  addNotif(`New admission: ${name} (${id}) enrolled in ${course}`, 'admission');
+  renderDash();
+  renderSL();
+
+  document.getElementById('save-btn').textContent='Done';
+  setTimeout(()=>closeDrawer('add-drawer'),3500);
+}
+
+// ─── REAL EMAIL VIA EMAILJS ───
+async function sendAdmissionEmail(s){
+  const cfg=loadEJS();
+  if(!cfg.serviceId||!cfg.templateId||!cfg.publicKey) return 'no-config';
+  try{
+    emailjs.init(cfg.publicKey);
+    const params={
+      to_email:'prem722sagar@gmail.com',
+      from_name:'Global Institute of Ghatampur',
+      subject:`New Admission: ${s.name} — ${s.id}`,
+      student_id:s.id,
+      student_name:s.name,
+      father_name:s.father,
+      mobile:s.mobile,
+      address:s.address||'Not provided',
+      course:s.course,
+      course_full:CI[s.course]?.full||'',
+      duration:CI[s.course]?.dur||'',
+      adm_date:s.admDate,
+      total_fee:'Rs '+s.totalFee.toLocaleString('en-IN'),
+      submitted_at:new Date().toLocaleString('en-IN'),
+      message:`Global Institute of Ghatampur - New Admission\n\nStudent ID: ${s.id}\nName: ${s.name}\nFather: ${s.father}\nMobile: ${s.mobile}\nAddress: ${s.address||'N/A'}\nCourse: ${s.course} (${CI[s.course]?.full})\nDuration: ${CI[s.course]?.dur}\nAdmission Date: ${s.admDate}\nTotal Fee: Rs ${s.totalFee.toLocaleString('en-IN')}\nSubmitted: ${new Date().toLocaleString('en-IN')}`
+    };
+    const r=await emailjs.send(cfg.serviceId,cfg.templateId,params);
+    return r.status===200?true:false;
+  }catch(err){
+    console.error('EmailJS error:',err);
+    return false;
+  }
+}
+
+// ─── PAY FEE ───
+function openPay(id){
+  students=loadStudents();
+  const s=students.find(x=>x.id===id);
+  if(!s)return;
+  const pend=s.totalFee-s.paid;
+  document.getElementById('pay-content').innerHTML=`
+    <div style="background:var(--bg);border-radius:11px;padding:12px;margin-bottom:14px">
+      <div style="font-size:14px;font-weight:800">${s.name}</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">${s.id} · ${s.course}</div>
+      <div style="display:flex;gap:10px">
+        <div style="flex:1;text-align:center"><div style="font-size:10px;color:var(--muted)">Total</div><div style="font-size:13px;font-weight:700">${fmtMoney(s.totalFee)}</div></div>
+        <div style="flex:1;text-align:center"><div style="font-size:10px;color:var(--muted)">Paid</div><div style="font-size:13px;font-weight:700;color:var(--green)">${fmtMoney(s.paid)}</div></div>
+        <div style="flex:1;text-align:center"><div style="font-size:10px;color:var(--muted)">Pending</div><div style="font-size:13px;font-weight:700;color:var(--red)">${fmtMoney(pend)}</div></div>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Amount (Rs)</label><input type="number" class="form-control" id="pay-amt" placeholder="Enter amount" max="${pend}"></div>
+    <div class="form-group"><label class="form-label">Payment Mode</label>
+      <select class="form-control" id="pay-mode"><option>Cash</option><option>UPI</option><option>Online Transfer</option><option>Cheque</option><option>NEFT</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-control" id="pay-date" value="${new Date().toISOString().split('T')[0]}"></div>
+    <button class="btn btn-success btn-block" onclick="recordPay('${id}')">Record Payment</button>`;
+  document.getElementById('pay-drawer').classList.add('open');
+}
+function recordPay(id){
+  students=loadStudents();
+  const s=students.find(x=>x.id===id);
+  const amt=parseInt(document.getElementById('pay-amt').value);
+  const mode=document.getElementById('pay-mode').value;
+  const date=document.getElementById('pay-date').value;
+  if(!amt||amt<=0){toast('Enter a valid amount');return;}
+  s.paid=Math.min(s.paid+amt,s.totalFee);
+  s.payments.push({date,amt,mode});
+  saveStudents(students);
+  closeDrawer('pay-drawer');
+  toast(`Payment of ${fmtMoney(amt)} recorded!`);
+  addNotif(`Payment: ${fmtMoney(amt)} received from ${s.name} (${s.id})`, 'fee');
+  renderFees();
+  renderDash();
+}
+
+// ─── DELETE ───
+function deleteStu(id){
+  if(!confirm('Delete this student permanently?'))return;
+  students=loadStudents();
+  const idx=students.findIndex(s=>s.id===id);
+  if(idx>=0){const nm=students[idx].name;students.splice(idx,1);saveStudents(students);toast(`${nm} deleted`);backToStudents();}
+}
+
+// ─── EXPORT / BACKUP ───
+function backupData(){
+  const data=JSON.stringify({students:loadStudents(),exportDate:new Date().toISOString()},null,2);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download='GIG_Backup_'+new Date().toISOString().split('T')[0]+'.json';a.click();
+  toast('Backup downloaded!');
+}
+function exportCSV(){
+  const ss=loadStudents();
+  const rows=[['ID','Name','Father','Mobile','Course','Admission Date','Total Fee','Paid','Pending'],...ss.map(s=>[s.id,s.name,s.father,s.mobile,s.course,s.admDate,s.totalFee,s.paid,s.totalFee-s.paid])];
+  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='GIG_Students_'+new Date().toISOString().split('T')[0]+'.csv';a.click();
+  toast('CSV exported!');
+}
+function clearAllData(){
+  if(!confirm('DELETE ALL STUDENTS? This cannot be undone!'))return;
+  if(!confirm('Final confirmation — delete everything?'))return;
+  localStorage.removeItem('gig_v2_students');
+  localStorage.removeItem('gig_v2_nid');
+  students=[];
+  toast('All data deleted');
+  renderDash();
+}
+
+// ─── EMAILJS CONFIG ───
+function loadEJSForm(){
+  const cfg=loadEJS();
+  if(cfg.serviceId)document.getElementById('ejs-sid').value=cfg.serviceId;
+  if(cfg.templateId)document.getElementById('ejs-tid').value=cfg.templateId;
+  if(cfg.publicKey)document.getElementById('ejs-key').value=cfg.publicKey;
+}
+function saveEJS(){
+  const cfg={
+    serviceId:document.getElementById('ejs-sid').value.trim(),
+    templateId:document.getElementById('ejs-tid').value.trim(),
+    publicKey:document.getElementById('ejs-key').value.trim()
+  };
+  if(!cfg.serviceId||!cfg.templateId||!cfg.publicKey){toast('Fill all three EmailJS fields');return;}
+  saveEJS(cfg);
+  localStorage.setItem('gig_v2_ejs',JSON.stringify(cfg));
+  toast('EmailJS config saved! Emails will now be delivered.');
+}
+
+// ─── DARK MODE ───
+function toggleDark(cb){
+  if(cb.checked){
+    document.documentElement.style.setProperty('--bg','#0e1422');
+    document.documentElement.style.setProperty('--card','#1a2642');
+    document.documentElement.style.setProperty('--text','#e2e8f8');
+    document.documentElement.style.setProperty('--border','#2a3555');
+    document.documentElement.style.setProperty('--muted','#8899bb');
+  }else{
+    document.documentElement.style.setProperty('--bg','#f2f4fb');
+    document.documentElement.style.setProperty('--card','#ffffff');
+    document.documentElement.style.setProperty('--text','#1c2b4a');
+    document.documentElement.style.setProperty('--border','#e4e9f5');
+    document.documentElement.style.setProperty('--muted','#7a8ba8');
+  }
+}
+
+// ─── MODAL UTILS ───
+function closeDrawer(id){document.getElementById(id).classList.remove('open')}
+
+// ─── TOAST ───
+let toastT;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ─── INIT ───
+document.getElementById('att-date').value=new Date().toISOString().split('T')[0];
+renderDash();
+updateNotifDot();
+</script>
+</body>
+</html>
